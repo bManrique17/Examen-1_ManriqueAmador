@@ -7,6 +7,7 @@ package examen.pkg1_manriqueamador;
 
 import java.util.Arrays;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -94,7 +95,7 @@ public class Principal extends javax.swing.JFrame {
         jLabel28 = new javax.swing.JLabel();
         jLabel29 = new javax.swing.JLabel();
         jLabel30 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
+        tf_sueldo1 = new javax.swing.JTextField();
         tf_antiguedad1 = new javax.swing.JTextField();
         tf_horario1 = new javax.swing.JTextField();
         ModificarPP = new javax.swing.JToggleButton();
@@ -207,6 +208,16 @@ public class Principal extends javax.swing.JFrame {
         jLabel1.setText("AGREGAR PERSONAS");
 
         jLabel2.setText("Nombre");
+
+        tf_nombre.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                tf_nombreAncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
 
         jLabel3.setText("Edad");
 
@@ -614,7 +625,7 @@ public class Principal extends javax.swing.JFrame {
                                         .addComponent(tf_ocupacion1)
                                         .addComponent(tf_antiguedad1)
                                         .addComponent(tf_horario1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jTextField6))))))
+                                        .addComponent(tf_sueldo1))))))
                     .addGap(31, 31, 31)))
         );
         jPanel2Layout.setVerticalGroup(
@@ -696,7 +707,7 @@ public class Principal extends javax.swing.JFrame {
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel30)
-                        .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tf_sueldo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(ModificarPP))
                     .addContainerGap(70, Short.MAX_VALUE)))
         );
@@ -1485,11 +1496,27 @@ public class Principal extends javax.swing.JFrame {
 
     }//GEN-LAST:event_ModificarMouseClicked
 
+    private void tf_nombreAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_tf_nombreAncestorAdded
+        String contra="";
+        do {            
+            String usuario = JOptionPane.showInputDialog(null,"Ingrese su nombre");
+            if(usuario.equals(usuarioKIM)){
+                contra = JOptionPane.showInputDialog(null,"Ingrese contra");
+            }else{
+                for (int i = 0; i < 10; i++) {
+                    
+                }
+            }
+        } while (contra.equals(contraKIM));
+    }//GEN-LAST:event_tf_nombreAncestorAdded
+    
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
+        
+            
+        
 
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -1680,7 +1707,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField6;
     private javax.swing.JRadioButton rd_F;
     private javax.swing.JRadioButton rd_F1;
     private javax.swing.JRadioButton rd_M;
@@ -1726,6 +1752,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTextField tf_suela;
     private javax.swing.JTextField tf_suela1;
     private javax.swing.JTextField tf_sueldo;
+    private javax.swing.JTextField tf_sueldo1;
     private javax.swing.JTextField tf_talla;
     private javax.swing.JTextField tf_talla1;
     private javax.swing.JTextField tf_tallaR;
@@ -1738,4 +1765,10 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTextField tf_vida;
     private javax.swing.JTextField tf_vida1;
     // End of variables declaration//GEN-END:variables
+    private String usuarioKIM = "KIM";
+    private String contraKIM = "1234";
+    private Familiar actualFF;
+    private Personal actualPP;
+
+
 }
