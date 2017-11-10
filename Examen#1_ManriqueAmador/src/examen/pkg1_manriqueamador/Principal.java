@@ -5,6 +5,7 @@
  */
 package examen.pkg1_manriqueamador;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
@@ -1308,7 +1309,7 @@ public class Principal extends javax.swing.JFrame {
                 temp.getNombre(), temp.getEdad(), temp.getID(), temp.getSexo()
             };
             Modelot.addRow(row);
-
+            listPersonas.add(temp);
         } else {
             Personal temp = new Personal();
             temp.setNombre(tf_nombre.getText());
@@ -1329,6 +1330,7 @@ public class Principal extends javax.swing.JFrame {
                 temp.getNombre(), temp.getEdad(), temp.getID(), temp.getSexo()
             };
             Modelot.addRow(row);
+            listPersonas.add(temp);
         }
 
 
@@ -1497,14 +1499,7 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_ModificarMouseClicked
 
     private void tf_nombreAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_tf_nombreAncestorAdded
-        if(!serKIM){
-            agregarobjeto.setVisible(false);
-            agregarpersonas.setVisible(false);
-            modificarpersonas.setVisible(false);
-            modificarobjeto.setVisible(false);
-            elimnarpersona.setVisible(false);
-            eliminarobjeto.setVisible(false);
-        }
+        
     }//GEN-LAST:event_tf_nombreAncestorAdded
     
     /**
@@ -1778,5 +1773,5 @@ public class Principal extends javax.swing.JFrame {
     private Familiar actualFF;
     private Personal actualPP;
     private static boolean serKIM;
-
+    private ArrayList<Persona> listPersonas = new ArrayList();
 }
