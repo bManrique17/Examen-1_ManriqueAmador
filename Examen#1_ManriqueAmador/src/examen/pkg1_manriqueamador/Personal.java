@@ -3,10 +3,10 @@ package examen.pkg1_manriqueamador;
 
 public class Personal extends Persona{
     private String ocupacion,horario;
-    private int antiguedad;
+    private String antiguedad;
     private double sueldo;
 
-    public Personal(String ocupacion, String horario, int antiguedad, double sueldo, String nombre, String ID, String sexo, String estadoCivil, int edad) {
+    public Personal(String ocupacion, String horario, String antiguedad, double sueldo, String nombre, String ID, String sexo, String estadoCivil, int edad) {
         super(nombre, ID, sexo, estadoCivil, edad);
         this.ocupacion = ocupacion;
         this.horario = horario;
@@ -30,7 +30,7 @@ public class Personal extends Persona{
         return horario;
     }
 
-    public int getAntiguedad() {
+    public String getAntiguedad() {
         return antiguedad;
     }
 
@@ -46,7 +46,7 @@ public class Personal extends Persona{
         this.horario = horario;
     }
 
-    public void setAntiguedad(int antiguedad) {
+    public void setAntiguedad(String antiguedad) {
         this.antiguedad = antiguedad;
     }
 

@@ -2,7 +2,7 @@
 package examen.pkg1_manriqueamador;
 
 public class Objeto {
-    protected String color,descripcion,marca;
+    protected String color,descripcion,marca,fecha;
     protected int tamano,calidad;
     protected Persona dueno;
     protected double precio;
@@ -15,6 +15,14 @@ public class Objeto {
         this.calidad = calidad;
         this.dueno = dueno;
         this.precio = precio;
+    }
+
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
+    }
+
+    public String getFecha() {
+        return fecha;
     }
 
     @Override

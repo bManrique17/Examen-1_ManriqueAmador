@@ -10,6 +10,9 @@ public class ObjHogar extends Objeto{
         this.area = area;
     }
 
+    public ObjHogar() {
+    }
+
     public String getVida() {
         return vida;
     }

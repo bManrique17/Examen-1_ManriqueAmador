@@ -32,6 +32,9 @@ public class Ropa extends Objeto{
         return material;
     }
 
+    public Ropa() {
+    }
+
     public String getPais() {
         return pais;
     }
