@@ -198,10 +198,11 @@ public class Principal extends javax.swing.JFrame {
         ENVIAR = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
         mensajes = new javax.swing.JTable();
-        jButton2 = new javax.swing.JButton();
+        VER = new javax.swing.JButton();
         CB_amigosU = new javax.swing.JComboBox<>();
         jLabel73 = new javax.swing.JLabel();
         tf_titulo = new javax.swing.JTextField();
+        NOMBRE = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -392,7 +393,6 @@ public class Principal extends javax.swing.JFrame {
                     .addGroup(agregarpersonasLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(agregarpersonasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(agregarpersonasLayout.createSequentialGroup()
                         .addGap(20, 20, 20)
@@ -448,15 +448,13 @@ public class Principal extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(agregarpersonasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                             .addComponent(jLabel15)
-                                            .addComponent(tf_antiguedad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                                            .addComponent(tf_antiguedad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, agregarpersonasLayout.createSequentialGroup()
                                         .addComponent(rd_F)
                                         .addGap(16, 16, 16))))
                             .addGroup(agregarpersonasLayout.createSequentialGroup()
                                 .addGap(1, 1, 1)
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                                .addComponent(jLabel5)))
                         .addGroup(agregarpersonasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(agregarpersonasLayout.createSequentialGroup()
                                 .addGroup(agregarpersonasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -464,7 +462,7 @@ public class Principal extends javax.swing.JFrame {
                                     .addComponent(tf_sueldo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
                                 .addComponent(AGREGAR)
-                                .addContainerGap(41, Short.MAX_VALUE))
+                                .addContainerGap(65, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, agregarpersonasLayout.createSequentialGroup()
                                 .addGap(2, 2, 2)
                                 .addComponent(jLabel74)
@@ -1172,22 +1170,21 @@ public class Principal extends javax.swing.JFrame {
             new String [] {
                 "Mensajes Recibidos"
             }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
+        ));
         jScrollPane4.setViewportView(mensajes);
 
-        jButton2.setText("<-Ver<-");
+        VER.setText("<-Ver<-");
+        VER.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                VERMouseClicked(evt);
+            }
+        });
 
         CB_amigosU.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "<Elija>" }));
 
         jLabel73.setText("Titulo");
+
+        NOMBRE.setText("jLabel49");
 
         javax.swing.GroupLayout INTERFAZLayout = new javax.swing.GroupLayout(INTERFAZ);
         INTERFAZ.setLayout(INTERFAZLayout);
@@ -1201,12 +1198,14 @@ public class Principal extends javax.swing.JFrame {
                                 .addGap(29, 29, 29)
                                 .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton2))
+                                .addComponent(VER))
                             .addGroup(INTERFAZLayout.createSequentialGroup()
                                 .addGroup(INTERFAZLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(INTERFAZLayout.createSequentialGroup()
                                         .addContainerGap()
-                                        .addComponent(jLabel71))
+                                        .addComponent(jLabel71)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(NOMBRE))
                                     .addGroup(INTERFAZLayout.createSequentialGroup()
                                         .addGap(95, 95, 95)
                                         .addComponent(ENVIAR)))
@@ -1235,7 +1234,9 @@ public class Principal extends javax.swing.JFrame {
                 .addGroup(INTERFAZLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(INTERFAZLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel71, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(INTERFAZLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel71, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(NOMBRE))
                         .addGroup(INTERFAZLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(INTERFAZLayout.createSequentialGroup()
                                 .addGap(18, 18, 18)
@@ -1248,7 +1249,7 @@ public class Principal extends javax.swing.JFrame {
                                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(INTERFAZLayout.createSequentialGroup()
                                 .addGap(97, 97, 97)
-                                .addComponent(jButton2)))
+                                .addComponent(VER)))
                         .addGap(27, 27, 27)
                         .addComponent(CB_amigosU, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1519,42 +1520,49 @@ public class Principal extends javax.swing.JFrame {
     private void PANELPPStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_PANELPPStateChanged
         
         if(INTERFAZ.isShowing()){
-        DefaultComboBoxModel Modelo = (DefaultComboBoxModel) cb_objetos.getModel();
+            
+        DefaultComboBoxModel Modelo = (DefaultComboBoxModel) cb_personas.getModel();
         String contactos = "";
         
         for (int i = 0; i < Modelo.getSize(); i++) {
-            System.out.println("HOLA");
-            try{
-            if(Modelo.getElementAt(i) instanceof Familiar)
-                contactos+=i+ "--"+((Personal)Modelo.getElementAt(i)).getNombre() + "\n";
-            else
-                contactos+=i+ "--"+((Familiar)Modelo.getElementAt(i)).getNombre() + "\n";
-            }catch(Exception a){
-                continue;
-            }
+            
+            
+            contactos+=i+ "--"+Modelo.getElementAt(i)+ "\n";
+           
             
         }
         
             int pos = Integer.parseInt(JOptionPane.showInputDialog(this,contactos + "Ingrese su numero de usuario"));
             if(((Persona)Modelo.getElementAt(pos)) instanceof Familiar){
+                try{
                 actualFF = ((Familiar)Modelo.getElementAt(pos));
-                Object [] arreglo = new Object[actualFF.listMensajes.size()];
+                NOMBRE.setText(actualFF.getNombre());
+                Object [] arreglo = new Object[1];
                 DefaultTableModel Modelot = (DefaultTableModel) mensajes.getModel();
                 
-                for (int i = 0; i < arreglo.length; i++) {
-                    arreglo[i-i] = actualFF.getListMensajes().indexOf(i);
+                for (int i = 0; i < actualFF.getListMensajes().size(); i++) {
+                    arreglo[0] = actualFF.getListMensajes().get(i);
                     Modelot.addRow(arreglo);
                     
                 }
-                
+                mensajes.setModel(Modelot);
+                }catch(Exception e){
+                    
+                }
             }else{
+                
+                try {
                 actualPP = ((Personal)Modelo.getElementAt(pos));
-                Object [] arreglo = new Object[actualFF.listMensajes.size()];
+                NOMBRE.setText(actualPP.getNombre());
+                Object [] arreglo = new Object[1];
                 DefaultTableModel Modelot = (DefaultTableModel) mensajes.getModel();
                 
-                for (int i = 0; i < arreglo.length; i++) {
-                    arreglo[i-i] = actualPP.getListMensajes().indexOf(i);
+                for (int i = 0; i < actualPP.getListMensajes().size(); i++) {
+                    arreglo[0] = actualPP.getListMensajes().get(i);
                     Modelot.addRow(arreglo);
+                }
+                mensajes.setModel(Modelot);
+                }catch(Exception e){
                     
                 }
             }
@@ -1564,12 +1572,19 @@ public class Principal extends javax.swing.JFrame {
 
     private void ENVIARMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ENVIARMouseClicked
         Persona x = ((Persona)CB_amigosU.getSelectedItem());
-        x.getListMensajes().add(tf_titulo.getText()+"\n"+ta_mensaje.getText());
+        x.getListMensajes().add(tf_titulo.getText()+"/"+"\n"+ta_mensaje.getText());
+        tf_titulo.setText("");
+        ta_mensaje.setText("");
+        
     }//GEN-LAST:event_ENVIARMouseClicked
-    
-    /**
-     * @param args the command line arguments
-     */
+
+    private void VERMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VERMouseClicked
+        DefaultTableModel tt = (DefaultTableModel) mensajes.getModel();
+        tf_titulo.setText(((String)(tt.getValueAt(mensajes.getSelectedRow(), 0))).substring(0,((String)(tt.getValueAt(mensajes.getSelectedRow(), 0))).indexOf("/")));
+        ta_mensaje.setText(((String)(tt.getValueAt(mensajes.getSelectedRow(), 0))).substring(((String)(tt.getValueAt(mensajes.getSelectedRow(), 0))).indexOf("/")+1,((String)(tt.getValueAt(mensajes.getSelectedRow(), 0))).length()));
+        
+    }//GEN-LAST:event_VERMouseClicked
+   
     public static void main(String args[]) {
         
         String usuarioKIM = "KIM";
@@ -1674,8 +1689,10 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPanel INTERFAZ;
     private javax.swing.JToggleButton Modificar;
     private javax.swing.JToggleButton ModificarPP;
+    private javax.swing.JLabel NOMBRE;
     private javax.swing.JTabbedPane PANELPP;
     private javax.swing.JRadioButton ROPA;
+    private javax.swing.JButton VER;
     private javax.swing.JRadioButton ZAPATO;
     private javax.swing.JPanel agregarobjeto;
     private javax.swing.JPanel agregarpersonas;
@@ -1688,7 +1705,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cb_rol1;
     private javax.swing.JPanel eliminarobjeto;
     private javax.swing.JPanel elimnarpersona;
-    private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
