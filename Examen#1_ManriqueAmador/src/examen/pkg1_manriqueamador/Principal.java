@@ -192,11 +192,10 @@ public class Principal extends javax.swing.JFrame {
         ELIMINAR_OB = new javax.swing.JToggleButton();
         INTERFAZ = new javax.swing.JPanel();
         jLabel71 = new javax.swing.JLabel();
-        LABEL_nombre = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        ta_mensaje = new javax.swing.JTextArea();
         jLabel72 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        ENVIAR = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
         mensajes = new javax.swing.JTable();
         jButton2 = new javax.swing.JButton();
@@ -1153,15 +1152,18 @@ public class Principal extends javax.swing.JFrame {
 
         jLabel71.setText("BIENVENIDO");
 
-        LABEL_nombre.setText("jLabel72");
-
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane3.setViewportView(jTextArea1);
+        ta_mensaje.setColumns(20);
+        ta_mensaje.setRows(5);
+        jScrollPane3.setViewportView(ta_mensaje);
 
         jLabel72.setText("Mensaje");
 
-        jButton1.setText("Enviar");
+        ENVIAR.setText("Enviar");
+        ENVIAR.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ENVIARMouseClicked(evt);
+            }
+        });
 
         mensajes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -1204,12 +1206,10 @@ public class Principal extends javax.swing.JFrame {
                                 .addGroup(INTERFAZLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(INTERFAZLayout.createSequentialGroup()
                                         .addContainerGap()
-                                        .addComponent(jLabel71)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(LABEL_nombre))
+                                        .addComponent(jLabel71))
                                     .addGroup(INTERFAZLayout.createSequentialGroup()
                                         .addGap(95, 95, 95)
-                                        .addComponent(jButton1)))
+                                        .addComponent(ENVIAR)))
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addGap(18, 18, 18))
                     .addGroup(INTERFAZLayout.createSequentialGroup()
@@ -1235,9 +1235,7 @@ public class Principal extends javax.swing.JFrame {
                 .addGroup(INTERFAZLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(INTERFAZLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(INTERFAZLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel71, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(LABEL_nombre))
+                        .addComponent(jLabel71, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(INTERFAZLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(INTERFAZLayout.createSequentialGroup()
                                 .addGap(18, 18, 18)
@@ -1254,7 +1252,7 @@ public class Principal extends javax.swing.JFrame {
                         .addGap(27, 27, 27)
                         .addComponent(CB_amigosU, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1))
+                        .addComponent(ENVIAR))
                     .addGroup(INTERFAZLayout.createSequentialGroup()
                         .addGap(25, 25, 25)
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -1523,8 +1521,18 @@ public class Principal extends javax.swing.JFrame {
         if(INTERFAZ.isShowing()){
         DefaultComboBoxModel Modelo = (DefaultComboBoxModel) cb_objetos.getModel();
         String contactos = "";
+        
         for (int i = 0; i < Modelo.getSize(); i++) {
-            contactos+=i+ "--"+((Persona)Modelo.getElementAt(i)).getNombre() + "\n";
+            System.out.println("HOLA");
+            try{
+            if(Modelo.getElementAt(i) instanceof Familiar)
+                contactos+=i+ "--"+((Personal)Modelo.getElementAt(i)).getNombre() + "\n";
+            else
+                contactos+=i+ "--"+((Familiar)Modelo.getElementAt(i)).getNombre() + "\n";
+            }catch(Exception a){
+                continue;
+            }
+            
         }
         
             int pos = Integer.parseInt(JOptionPane.showInputDialog(this,contactos + "Ingrese su numero de usuario"));
@@ -1553,6 +1561,11 @@ public class Principal extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_PANELPPStateChanged
+
+    private void ENVIARMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ENVIARMouseClicked
+        Persona x = ((Persona)CB_amigosU.getSelectedItem());
+        x.getListMensajes().add(tf_titulo.getText()+"\n"+ta_mensaje.getText());
+    }//GEN-LAST:event_ENVIARMouseClicked
     
     /**
      * @param args the command line arguments
@@ -1571,7 +1584,7 @@ public class Principal extends javax.swing.JFrame {
             }else{
                 serKIM = false;
             }
-        } while (contra.equals(contraKIM));
+        } while (!contra.equals(contraKIM));
         
 
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -1655,10 +1668,10 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> CB_amigosU;
     private javax.swing.JToggleButton ELIMINAR;
     private javax.swing.JToggleButton ELIMINAR_OB;
+    private javax.swing.JButton ENVIAR;
     private javax.swing.ButtonGroup GRUPO_tipo;
     private javax.swing.JRadioButton HOGAR;
     private javax.swing.JPanel INTERFAZ;
-    private javax.swing.JLabel LABEL_nombre;
     private javax.swing.JToggleButton Modificar;
     private javax.swing.JToggleButton ModificarPP;
     private javax.swing.JTabbedPane PANELPP;
@@ -1675,7 +1688,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cb_rol1;
     private javax.swing.JPanel eliminarobjeto;
     private javax.swing.JPanel elimnarpersona;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JLabel jLabel1;
@@ -1757,7 +1769,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTable mensajes;
@@ -1769,6 +1780,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JRadioButton rd_M1;
     private javax.swing.JRadioButton rd_familiar;
     private javax.swing.JRadioButton rd_personal;
+    private javax.swing.JTextArea ta_mensaje;
     private javax.swing.JTable tablaObjetos;
     private javax.swing.JTable tablaPersonas;
     private javax.swing.JTextField tf_altura;
