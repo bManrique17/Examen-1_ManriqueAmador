@@ -24,6 +24,8 @@ public class Principal extends javax.swing.JFrame {
         initComponents();
     }
 
+    static Familiar KIM = new Familiar();
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -1148,6 +1150,16 @@ public class Principal extends javax.swing.JFrame {
 
         PANELPP.addTab("Elimnar objetos", eliminarobjeto);
 
+        INTERFAZ.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                INTERFAZAncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+
         jLabel71.setText("BIENVENIDO");
 
         ta_mensaje.setColumns(20);
@@ -1184,7 +1196,7 @@ public class Principal extends javax.swing.JFrame {
 
         jLabel73.setText("Titulo");
 
-        NOMBRE.setText("jLabel49");
+        NOMBRE.setText("KIM");
 
         javax.swing.GroupLayout INTERFAZLayout = new javax.swing.GroupLayout(INTERFAZ);
         INTERFAZ.setLayout(INTERFAZLayout);
@@ -1301,79 +1313,72 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_tf_marca1ActionPerformed
 
     private void AGREGARMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AGREGARMouseClicked
-        if (rd_familiar.isSelected()) {
-            Familiar temp = new Familiar();
-            temp.setNombre(tf_nombre.getText());
-            temp.setEdad(Integer.parseInt(tf_edad.getText()));
-            if (rd_M.isSelected()) {
-                temp.setSexo("Masculino");
-            } else {
-                temp.setSexo("Femenino");
-            }
-            temp.setEstadoCivil(tf_estadoCivil.getText());
-            temp.setRol((String) cb_rol.getSelectedItem());
-            temp.setPeso(Integer.parseInt(tf_peso.getText()));
-            temp.setAltura(Integer.parseInt(tf_altura.getText()));
-            
-            DefaultComboBoxModel Modelo = (DefaultComboBoxModel) cb_personas.getModel();
-            Modelo.addElement(temp);
-            DefaultTableModel Modelot = (DefaultTableModel) tablaPersonas.getModel();
-            Object[] row = {
-                temp.getNombre(), temp.getEdad(), temp.getID(), temp.getSexo()
-            };
-            Modelot.addRow(row);
-            listPersonas.add(temp);
-            CB_amigosU.setModel(Modelo);
-        } else {
-            Personal temp = new Personal();
-            temp.setNombre(tf_nombre.getText());
-            temp.setEdad(Integer.parseInt(tf_edad.getText()));
-            if (rd_M.isSelected()) {
-                temp.setSexo("Masculino");
-            } else {
-                temp.setSexo("Femenino");
-            }
-            temp.setOcupacion(tf_ocupacion.getText());
-            temp.setHorario(tf_horario.getText());
-            temp.setAntiguedad(tf_antiguedad.getText());
-            temp.setSueldo(Integer.parseInt(tf_sueldo.getText()));
-            DefaultComboBoxModel Modelo = (DefaultComboBoxModel) cb_personas.getModel();
-            Modelo.addElement(temp);
-            DefaultTableModel Modelot = (DefaultTableModel) tablaPersonas.getModel();
-            Object[] row = {
-                temp.getNombre(), temp.getEdad(), temp.getID(), temp.getSexo()
-            };
-            Modelot.addRow(row);
-            listPersonas.add(temp);
-            CB_amigosU.setModel(Modelo);
+        if (senuelo) {
+            DefaultComboBoxModel tt = (DefaultComboBoxModel) cb_personas.getModel();
+            tt.addElement(new Familiar("JEFA","HOT",10,150,"KIM","0801199916457","Femenino","Casada",38));
+            //String rol, String trabajo, int altura, int peso, String nombre, String ID, String sexo, String estadoCivil, int edad
+            CB_amigosU.setModel(tt);
+            cb_personas.setModel(tt);
+            senuelo = false;
         }
+        if (serKIM) {
+            if (rd_familiar.isSelected()) {
+                Familiar temp = new Familiar();
+                temp.setNombre(tf_nombre.getText());
+                temp.setEdad(Integer.parseInt(tf_edad.getText()));
+                if (rd_M.isSelected()) {
+                    temp.setSexo("Masculino");
+                } else {
+                    temp.setSexo("Femenino");
+                }
+                temp.setEstadoCivil(tf_estadoCivil.getText());
+                temp.setRol((String) cb_rol.getSelectedItem());
+                temp.setPeso(Integer.parseInt(tf_peso.getText()));
+                temp.setAltura(Integer.parseInt(tf_altura.getText()));
 
+                DefaultComboBoxModel Modelo = (DefaultComboBoxModel) cb_personas.getModel();
+                Modelo.addElement(temp);
+                DefaultTableModel Modelot = (DefaultTableModel) tablaPersonas.getModel();
+                Object[] row = {
+                    temp.getNombre(), temp.getEdad(), temp.getID(), temp.getSexo()
+                };
+                Modelot.addRow(row);
+                listPersonas.add(temp);
+                CB_amigosU.setModel(Modelo);
+            } else {
+                Personal temp = new Personal();
+                temp.setNombre(tf_nombre.getText());
+                temp.setEdad(Integer.parseInt(tf_edad.getText()));
+                if (rd_M.isSelected()) {
+                    temp.setSexo("Masculino");
+                } else {
+                    temp.setSexo("Femenino");
+                }
+                temp.setOcupacion(tf_ocupacion.getText());
+                temp.setHorario(tf_horario.getText());
+                temp.setAntiguedad(tf_antiguedad.getText());
+                temp.setSueldo(Integer.parseInt(tf_sueldo.getText()));
+                DefaultComboBoxModel Modelo = (DefaultComboBoxModel) cb_personas.getModel();
+                Modelo.addElement(temp);
+                DefaultTableModel Modelot = (DefaultTableModel) tablaPersonas.getModel();
+                Object[] row = {
+                    temp.getNombre(), temp.getEdad(), temp.getID(), temp.getSexo()
+                };
+                Modelot.addRow(row);
+                listPersonas.add(temp);
+                CB_amigosU.setModel(Modelo);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "shh vaya! NO ERES KIM! ");
+        }
 
     }//GEN-LAST:event_AGREGARMouseClicked
 
     private void AGREGAR_OBMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AGREGAR_OBMouseClicked
-        if (ZAPATO.isSelected()) {
-            Zapato temp = new Zapato();
-            temp.setColor(tf_color.getText());
-            temp.setDescripcion(tf_descripcion.getText());
-            temp.setMarca(tf_marca.getText());
-            temp.setTamano(Integer.parseInt(tf_tamano.getText()));
-            temp.setCalidad(Integer.parseInt(tf_calidad.getText()));
-            temp.setPrecio(Integer.parseInt(tf_precio.getText()));
-            temp.setTalla(tf_talla.getText());
-            temp.setSuela(tf_suela.getText());
-            temp.setConfort(Integer.parseInt(tf_confort.getText()));
-            DefaultComboBoxModel Modelo = (DefaultComboBoxModel) cb_objetos.getModel();
-            Modelo.addElement(temp);
-            cb_objetos1.setModel(Modelo);
-            DefaultTableModel Modelot = (DefaultTableModel) tablaObjetos.getModel();
-            Object[] row = {
-                temp.getColor(), temp.getMarca(), temp.getTamano(), temp.getCalidad(), temp.getDueno()
-            };
-            Modelot.addRow(row);
-        } else {
-            if (ROPA.isSelected()) {
-                Ropa temp = new Ropa();
+
+        if (serKIM) {
+            if (ZAPATO.isSelected()) {
+                Zapato temp = new Zapato();
                 temp.setColor(tf_color.getText());
                 temp.setDescripcion(tf_descripcion.getText());
                 temp.setMarca(tf_marca.getText());
@@ -1381,8 +1386,8 @@ public class Principal extends javax.swing.JFrame {
                 temp.setCalidad(Integer.parseInt(tf_calidad.getText()));
                 temp.setPrecio(Integer.parseInt(tf_precio.getText()));
                 temp.setTalla(tf_talla.getText());
-                temp.setMaterial(tf_material.getText());
-                temp.setPais(tf_pais.getText());
+                temp.setSuela(tf_suela.getText());
+                temp.setConfort(Integer.parseInt(tf_confort.getText()));
                 DefaultComboBoxModel Modelo = (DefaultComboBoxModel) cb_objetos.getModel();
                 Modelo.addElement(temp);
                 cb_objetos1.setModel(Modelo);
@@ -1392,216 +1397,286 @@ public class Principal extends javax.swing.JFrame {
                 };
                 Modelot.addRow(row);
             } else {
-                ObjHogar temp = new ObjHogar();
-                temp.setColor(tf_color.getText());
-                temp.setDescripcion(tf_descripcion.getText());
-                temp.setMarca(tf_marca.getText());
-                temp.setTamano(Integer.parseInt(tf_tamano.getText()));
-                temp.setCalidad(Integer.parseInt(tf_calidad.getText()));
-                temp.setPrecio(Integer.parseInt(tf_precio.getText()));
-                temp.setVida(tf_vida.getText());
-                temp.setFecha(tf_fecha.getText());
-                temp.setArea(((String) cb_area.getSelectedItem()));
-                DefaultComboBoxModel Modelo = (DefaultComboBoxModel) cb_objetos.getModel();
-                Modelo.addElement(temp);
-                cb_objetos1.setModel(Modelo);
-                DefaultTableModel Modelot = (DefaultTableModel) tablaObjetos.getModel();
-                Object[] row = {
-                    temp.getColor(), temp.getMarca(), temp.getTamano(), temp.getCalidad(), temp.getDueno()
-                };
-                Modelot.addRow(row);
+                if (ROPA.isSelected()) {
+                    Ropa temp = new Ropa();
+                    temp.setColor(tf_color.getText());
+                    temp.setDescripcion(tf_descripcion.getText());
+                    temp.setMarca(tf_marca.getText());
+                    temp.setTamano(Integer.parseInt(tf_tamano.getText()));
+                    temp.setCalidad(Integer.parseInt(tf_calidad.getText()));
+                    temp.setPrecio(Integer.parseInt(tf_precio.getText()));
+                    temp.setTalla(tf_talla.getText());
+                    temp.setMaterial(tf_material.getText());
+                    temp.setPais(tf_pais.getText());
+                    DefaultComboBoxModel Modelo = (DefaultComboBoxModel) cb_objetos.getModel();
+                    Modelo.addElement(temp);
+                    cb_objetos1.setModel(Modelo);
+                    DefaultTableModel Modelot = (DefaultTableModel) tablaObjetos.getModel();
+                    Object[] row = {
+                        temp.getColor(), temp.getMarca(), temp.getTamano(), temp.getCalidad(), temp.getDueno()
+                    };
+                    Modelot.addRow(row);
+                } else {
+                    ObjHogar temp = new ObjHogar();
+                    temp.setColor(tf_color.getText());
+                    temp.setDescripcion(tf_descripcion.getText());
+                    temp.setMarca(tf_marca.getText());
+                    temp.setTamano(Integer.parseInt(tf_tamano.getText()));
+                    temp.setCalidad(Integer.parseInt(tf_calidad.getText()));
+                    temp.setPrecio(Integer.parseInt(tf_precio.getText()));
+                    temp.setVida(tf_vida.getText());
+                    temp.setFecha(tf_fecha.getText());
+                    temp.setArea(((String) cb_area.getSelectedItem()));
+                    DefaultComboBoxModel Modelo = (DefaultComboBoxModel) cb_objetos.getModel();
+                    Modelo.addElement(temp);
+                    cb_objetos1.setModel(Modelo);
+                    DefaultTableModel Modelot = (DefaultTableModel) tablaObjetos.getModel();
+                    Object[] row = {
+                        temp.getColor(), temp.getMarca(), temp.getTamano(), temp.getCalidad(), temp.getDueno()
+                    };
+                    Modelot.addRow(row);
+                }
             }
+        } else {
+            JOptionPane.showMessageDialog(this, "shh vaya! NO ERES KIM! ");
         }
 
     }//GEN-LAST:event_AGREGAR_OBMouseClicked
 
     private void ELIMINAR_OBMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ELIMINAR_OBMouseClicked
-        tablaObjetos.getSelectedRow();
-        DefaultTableModel Modelot = (DefaultTableModel) tablaObjetos.getModel();
-        DefaultComboBoxModel Modelo = (DefaultComboBoxModel) cb_objetos.getModel();
-        Modelo.removeElementAt(tablaObjetos.getSelectedRow());
-        cb_objetos.setModel(Modelo);
-        cb_objetos1.setModel(Modelo);
-        Modelot.removeRow(tablaObjetos.getSelectedRow());
+        if (serKIM) {
+            tablaObjetos.getSelectedRow();
+            DefaultTableModel Modelot = (DefaultTableModel) tablaObjetos.getModel();
+            DefaultComboBoxModel Modelo = (DefaultComboBoxModel) cb_objetos.getModel();
+            Modelo.removeElementAt(tablaObjetos.getSelectedRow());
+            cb_objetos.setModel(Modelo);
+            cb_objetos1.setModel(Modelo);
+            Modelot.removeRow(tablaObjetos.getSelectedRow());
+        } else {
+            JOptionPane.showMessageDialog(this, "shh vaya! NO ERES KIM! ");
+        }
     }//GEN-LAST:event_ELIMINAR_OBMouseClicked
 
     private void ELIMINARMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ELIMINARMouseClicked
-        tablaPersonas.getSelectedRow();
-        DefaultTableModel Modelot = (DefaultTableModel) tablaPersonas.getModel();
-        
-        DefaultComboBoxModel Modelo = (DefaultComboBoxModel) cb_personas.getModel();
-        Modelo.removeElementAt(tablaPersonas.getSelectedRow());
-        cb_personas.setModel(Modelo);
-        CB_amigosU.setModel(Modelo);
-        
-        Modelot.removeRow(tablaPersonas.getSelectedRow());
+        if (serKIM) {
+            tablaPersonas.getSelectedRow();
+            DefaultTableModel Modelot = (DefaultTableModel) tablaPersonas.getModel();
+            DefaultComboBoxModel Modelo = (DefaultComboBoxModel) cb_personas.getModel();
+            Modelo.removeElementAt(tablaPersonas.getSelectedRow());
+            cb_personas.setModel(Modelo);
+            CB_amigosU.setModel(Modelo);
+            
+            Modelot.removeRow(tablaPersonas.getSelectedRow());
+        } else {
+            JOptionPane.showMessageDialog(this, "shh vaya! NO ERES KIM! ");
+        }
     }//GEN-LAST:event_ELIMINARMouseClicked
 
     private void ModificarPPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ModificarPPMouseClicked
-        if(cb_personas.getSelectedItem() instanceof Familiar){
-            DefaultComboBoxModel Modelo = (DefaultComboBoxModel) cb_personas.getModel();
-            ((Familiar) Modelo.getSelectedItem()).setNombre(tf_nombre.getText());
-            ((Familiar) Modelo.getSelectedItem()).setEdad(Integer.parseInt(tf_edad.getText()));
-            if (rd_M.isSelected()) {
-                ((Familiar) Modelo.getSelectedItem()).setSexo("Masculino");
+        if (serKIM) {
+            if (cb_personas.getSelectedItem() instanceof Familiar) {
+                DefaultComboBoxModel Modelo = (DefaultComboBoxModel) cb_personas.getModel();
+                ((Familiar) Modelo.getSelectedItem()).setNombre(tf_nombre.getText());
+                ((Familiar) Modelo.getSelectedItem()).setEdad(Integer.parseInt(tf_edad.getText()));
+                if (rd_M.isSelected()) {
+                    ((Familiar) Modelo.getSelectedItem()).setSexo("Masculino");
+                } else {
+                    ((Familiar) Modelo.getSelectedItem()).setSexo("Femenino");
+                }
+                ((Familiar) Modelo.getSelectedItem()).setEstadoCivil(tf_estadoCivil1.getText());
+                ((Familiar) Modelo.getSelectedItem()).setRol((String) cb_rol1.getSelectedItem());
+                ((Familiar) Modelo.getSelectedItem()).setPeso(Integer.parseInt(tf_peso1.getText()));
+                ((Familiar) Modelo.getSelectedItem()).setAltura(Integer.parseInt(tf_altura1.getText()));
             } else {
-                ((Familiar) Modelo.getSelectedItem()).setSexo("Femenino");
+                DefaultComboBoxModel Modelo = (DefaultComboBoxModel) cb_personas.getModel();
+                ((Personal) Modelo.getSelectedItem()).setNombre(tf_nombre1.getText());
+                ((Personal) Modelo.getSelectedItem()).setEdad(Integer.parseInt(tf_edad1.getText()));
+                if (rd_M.isSelected()) {
+                    ((Personal) Modelo.getSelectedItem()).setSexo("Masculino");
+                } else {
+                    ((Personal) Modelo.getSelectedItem()).setSexo("Femenino");
+                }
+                ((Personal) Modelo.getSelectedItem()).setEstadoCivil(tf_estadoCivil1.getText());
+                ((Personal) Modelo.getSelectedItem()).setOcupacion(tf_ocupacion1.getText());
+                ((Personal) Modelo.getSelectedItem()).setHorario(tf_horario1.getText());
+                ((Personal) Modelo.getSelectedItem()).setAntiguedad(tf_antiguedad1.getText());
+                ((Personal) Modelo.getSelectedItem()).setSueldo(Integer.parseInt(tf_sueldo1.getText()));
             }
-            ((Familiar) Modelo.getSelectedItem()).setEstadoCivil(tf_estadoCivil1.getText());
-            ((Familiar) Modelo.getSelectedItem()).setRol((String) cb_rol1.getSelectedItem());
-            ((Familiar) Modelo.getSelectedItem()).setPeso(Integer.parseInt(tf_peso1.getText()));
-            ((Familiar) Modelo.getSelectedItem()).setAltura(Integer.parseInt(tf_altura1.getText()));
-        }else{
-            DefaultComboBoxModel Modelo = (DefaultComboBoxModel) cb_personas.getModel();
-            ((Personal) Modelo.getSelectedItem()).setNombre(tf_nombre1.getText());
-            ((Personal) Modelo.getSelectedItem()).setEdad(Integer.parseInt(tf_edad1.getText()));
-            if (rd_M.isSelected()) {
-                ((Personal) Modelo.getSelectedItem()).setSexo("Masculino");
-            } else {
-                ((Personal) Modelo.getSelectedItem()).setSexo("Femenino");
-            }
-            ((Personal) Modelo.getSelectedItem()).setEstadoCivil(tf_estadoCivil1.getText());
-            ((Personal) Modelo.getSelectedItem()).setOcupacion(tf_ocupacion1.getText());
-            ((Personal) Modelo.getSelectedItem()).setHorario(tf_horario1.getText());
-            ((Personal) Modelo.getSelectedItem()).setAntiguedad(tf_antiguedad1.getText());
-            ((Personal) Modelo.getSelectedItem()).setSueldo(Integer.parseInt(tf_sueldo1.getText()));
+        } else {
+            JOptionPane.showMessageDialog(this, "shh vaya! NO ERES KIM! ");
         }
-        
 
     }//GEN-LAST:event_ModificarPPMouseClicked
 
     private void ModificarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ModificarMouseClicked
-        if (ZAPATO.isSelected()) {
-            DefaultComboBoxModel Modelo = (DefaultComboBoxModel) cb_objetos.getModel();
-            ((Zapato)Modelo.getSelectedItem()).setColor(tf_color1.getText());
-            ((Zapato)Modelo.getSelectedItem()).setDescripcion(tf_descripcion1.getText());
-            ((Zapato)Modelo.getSelectedItem()).setMarca(tf_marca1.getText());
-            ((Zapato)Modelo.getSelectedItem()).setTamano(Integer.parseInt(tf_tamano1.getText()));
-            ((Zapato)Modelo.getSelectedItem()).setCalidad(Integer.parseInt(tf_calidad1.getText()));
-            ((Zapato)Modelo.getSelectedItem()).setPrecio(Integer.parseInt(tf_precio1.getText()));
-            ((Zapato)Modelo.getSelectedItem()).setTalla(tf_talla1.getText());
-            ((Zapato)Modelo.getSelectedItem()).setSuela(tf_suela1.getText());
-            ((Zapato)Modelo.getSelectedItem()).setConfort(Integer.parseInt(tf_confort1.getText()));
-            cb_objetos1.setModel(Modelo);
-        } else {
-            if (ROPA.isSelected()) {
+        if (serKIM) {
+            if (ZAPATO.isSelected()) {
                 DefaultComboBoxModel Modelo = (DefaultComboBoxModel) cb_objetos.getModel();
-                ((Ropa)Modelo.getSelectedItem()).setColor(tf_color1.getText());
-                ((Ropa)Modelo.getSelectedItem()).setDescripcion(tf_descripcion1.getText());
-                ((Ropa)Modelo.getSelectedItem()).setMarca(tf_marca1.getText());
-                ((Ropa)Modelo.getSelectedItem()).setTamano(Integer.parseInt(tf_tamano1.getText()));
-                ((Ropa)Modelo.getSelectedItem()).setCalidad(Integer.parseInt(tf_calidad1.getText()));
-                ((Ropa)Modelo.getSelectedItem()).setPrecio(Integer.parseInt(tf_precio1.getText()));
-                ((Ropa)Modelo.getSelectedItem()).setTalla(tf_talla1.getText());
-                ((Ropa)Modelo.getSelectedItem()).setMaterial(tf_material1.getText());
-                ((Ropa)Modelo.getSelectedItem()).setPais(tf_pais1.getText());
+                ((Zapato) Modelo.getSelectedItem()).setColor(tf_color1.getText());
+                ((Zapato) Modelo.getSelectedItem()).setDescripcion(tf_descripcion1.getText());
+                ((Zapato) Modelo.getSelectedItem()).setMarca(tf_marca1.getText());
+                ((Zapato) Modelo.getSelectedItem()).setTamano(Integer.parseInt(tf_tamano1.getText()));
+                ((Zapato) Modelo.getSelectedItem()).setCalidad(Integer.parseInt(tf_calidad1.getText()));
+                ((Zapato) Modelo.getSelectedItem()).setPrecio(Integer.parseInt(tf_precio1.getText()));
+                ((Zapato) Modelo.getSelectedItem()).setTalla(tf_talla1.getText());
+                ((Zapato) Modelo.getSelectedItem()).setSuela(tf_suela1.getText());
+                ((Zapato) Modelo.getSelectedItem()).setConfort(Integer.parseInt(tf_confort1.getText()));
                 cb_objetos1.setModel(Modelo);
             } else {
-                DefaultComboBoxModel Modelo = (DefaultComboBoxModel) cb_objetos.getModel();
-                ((ObjHogar)Modelo.getSelectedItem()).setColor(tf_color1.getText());
-                ((ObjHogar)Modelo.getSelectedItem()).setDescripcion(tf_descripcion1.getText());
-                ((ObjHogar)Modelo.getSelectedItem()).setMarca(tf_marca1.getText());
-                ((ObjHogar)Modelo.getSelectedItem()).setTamano(Integer.parseInt(tf_tamano1.getText()));
-                ((ObjHogar)Modelo.getSelectedItem()).setCalidad(Integer.parseInt(tf_calidad1.getText()));
-                ((ObjHogar)Modelo.getSelectedItem()).setPrecio(Integer.parseInt(tf_precio1.getText()));
-                ((ObjHogar)Modelo.getSelectedItem()).setVida(tf_vida1.getText());
-                ((ObjHogar)Modelo.getSelectedItem()).setFecha(tf_fecha1.getText());
-                ((ObjHogar)Modelo.getSelectedItem()).setArea(((String) cb_area1.getSelectedItem()));
-                cb_objetos1.setModel(Modelo);
+                if (ROPA.isSelected()) {
+                    DefaultComboBoxModel Modelo = (DefaultComboBoxModel) cb_objetos.getModel();
+                    ((Ropa) Modelo.getSelectedItem()).setColor(tf_color1.getText());
+                    ((Ropa) Modelo.getSelectedItem()).setDescripcion(tf_descripcion1.getText());
+                    ((Ropa) Modelo.getSelectedItem()).setMarca(tf_marca1.getText());
+                    ((Ropa) Modelo.getSelectedItem()).setTamano(Integer.parseInt(tf_tamano1.getText()));
+                    ((Ropa) Modelo.getSelectedItem()).setCalidad(Integer.parseInt(tf_calidad1.getText()));
+                    ((Ropa) Modelo.getSelectedItem()).setPrecio(Integer.parseInt(tf_precio1.getText()));
+                    ((Ropa) Modelo.getSelectedItem()).setTalla(tf_talla1.getText());
+                    ((Ropa) Modelo.getSelectedItem()).setMaterial(tf_material1.getText());
+                    ((Ropa) Modelo.getSelectedItem()).setPais(tf_pais1.getText());
+                    cb_objetos1.setModel(Modelo);
+                } else {
+                    DefaultComboBoxModel Modelo = (DefaultComboBoxModel) cb_objetos.getModel();
+                    ((ObjHogar) Modelo.getSelectedItem()).setColor(tf_color1.getText());
+                    ((ObjHogar) Modelo.getSelectedItem()).setDescripcion(tf_descripcion1.getText());
+                    ((ObjHogar) Modelo.getSelectedItem()).setMarca(tf_marca1.getText());
+                    ((ObjHogar) Modelo.getSelectedItem()).setTamano(Integer.parseInt(tf_tamano1.getText()));
+                    ((ObjHogar) Modelo.getSelectedItem()).setCalidad(Integer.parseInt(tf_calidad1.getText()));
+                    ((ObjHogar) Modelo.getSelectedItem()).setPrecio(Integer.parseInt(tf_precio1.getText()));
+                    ((ObjHogar) Modelo.getSelectedItem()).setVida(tf_vida1.getText());
+                    ((ObjHogar) Modelo.getSelectedItem()).setFecha(tf_fecha1.getText());
+                    ((ObjHogar) Modelo.getSelectedItem()).setArea(((String) cb_area1.getSelectedItem()));
+                    cb_objetos1.setModel(Modelo);
+                }
             }
+        } else {
+            JOptionPane.showMessageDialog(this, "shh vaya! NO ERES KIM! ");
         }
 
     }//GEN-LAST:event_ModificarMouseClicked
 
     private void tf_nombreAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_tf_nombreAncestorAdded
-        
+
     }//GEN-LAST:event_tf_nombreAncestorAdded
 
     private void PANELPPStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_PANELPPStateChanged
-        
-        if(INTERFAZ.isShowing()){
-            
-        DefaultComboBoxModel Modelo = (DefaultComboBoxModel) cb_personas.getModel();
-        String contactos = "";
-        
-        for (int i = 0; i < Modelo.getSize(); i++) {
-            
-            
-            contactos+=i+ "--"+Modelo.getElementAt(i)+ "\n";
-           
-            
-        }
-        
-            int pos = Integer.parseInt(JOptionPane.showInputDialog(this,contactos + "Ingrese su numero de usuario"));
-            if(((Persona)Modelo.getElementAt(pos)) instanceof Familiar){
-                try{
-                actualFF = ((Familiar)Modelo.getElementAt(pos));
-                NOMBRE.setText(actualFF.getNombre());
-                Object [] arreglo = new Object[1];
-                DefaultTableModel Modelot = (DefaultTableModel) mensajes.getModel();
-                
-                for (int i = 0; i < actualFF.getListMensajes().size(); i++) {
-                    arreglo[0] = actualFF.getListMensajes().get(i);
-                    Modelot.addRow(arreglo);
-                    
-                }
-                mensajes.setModel(Modelot);
-                }catch(Exception e){
-                    
-                }
-            }else{
-                
+
+        if (INTERFAZ.isShowing()) {
+
+            DefaultComboBoxModel Modelo = (DefaultComboBoxModel) cb_personas.getModel();
+            String contactos = "";
+
+            for (int i = 0; i < Modelo.getSize(); i++) {
+
+                contactos += i + "--" + Modelo.getElementAt(i) + "\n";
+
+            }
+
+            int pos = Integer.parseInt(JOptionPane.showInputDialog(this, contactos + "Ingrese su numero de usuario"));
+            if (((Persona) Modelo.getElementAt(pos)) instanceof Familiar) {
                 try {
-                actualPP = ((Personal)Modelo.getElementAt(pos));
-                NOMBRE.setText(actualPP.getNombre());
-                Object [] arreglo = new Object[1];
-                DefaultTableModel Modelot = (DefaultTableModel) mensajes.getModel();
-                
-                for (int i = 0; i < actualPP.getListMensajes().size(); i++) {
-                    arreglo[0] = actualPP.getListMensajes().get(i);
-                    Modelot.addRow(arreglo);
-                }
-                mensajes.setModel(Modelot);
-                }catch(Exception e){
                     
+                    
+                    actualFF = ((Familiar) Modelo.getElementAt(pos));
+                    
+                    NOMBRE.setText(actualFF.getNombre());
+                    Object[] arreglo = new Object[1];
+                    DefaultTableModel Modelot = (DefaultTableModel) mensajes.getModel();
+
+                    for (int i = 0; i < actualFF.getListMensajes().size(); i++) {
+                        arreglo[0] = actualFF.getListMensajes().get(i);
+                        Modelot.addRow(arreglo);
+
+                    }
+                    mensajes.setModel(Modelot);
+                } catch (Exception e) {
+
+                }
+            } else {
+
+                try {
+                    actualPP = ((Personal) Modelo.getElementAt(pos));
+                    NOMBRE.setText(actualPP.getNombre());
+                    Object[] arreglo = new Object[1];
+                    DefaultTableModel Modelot = (DefaultTableModel) mensajes.getModel();
+
+                    for (int i = 0; i < actualPP.getListMensajes().size(); i++) {
+                        arreglo[0] = actualPP.getListMensajes().get(i);
+                        Modelot.addRow(arreglo);
+                    }
+                    mensajes.setModel(Modelot);
+                } catch (Exception e) {
+
                 }
             }
         }
-        
+
     }//GEN-LAST:event_PANELPPStateChanged
 
     private void ENVIARMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ENVIARMouseClicked
-        Persona x = ((Persona)CB_amigosU.getSelectedItem());
-        x.getListMensajes().add(tf_titulo.getText()+"/"+"\n"+ta_mensaje.getText());
-        tf_titulo.setText("");
-        ta_mensaje.setText("");
-        
+        try {
+            Familiar x = ((Familiar) CB_amigosU.getSelectedItem());
+            if (NOMBRE.getText().equals("KIM") && x.getRol().equals("Esposo")) {
+                System.out.println("CODIFODC");
+                Persona x1 = ((Persona) CB_amigosU.getSelectedItem());
+                x1.getListMensajes().add(tf_titulo.getText() + "/" + "\n" + ta_mensaje.getText());
+                tf_titulo.setText("");
+                ta_mensaje.setText("");
+            } else {
+                Persona x1 = ((Persona) CB_amigosU.getSelectedItem());
+                x1.getListMensajes().add(tf_titulo.getText() + "/" + "\n" + ta_mensaje.getText());
+                tf_titulo.setText("");
+                ta_mensaje.setText("");
+            }
+        } catch (Exception e) {
+            Persona x1 = ((Persona) CB_amigosU.getSelectedItem());
+            x1.getListMensajes().add(tf_titulo.getText() + "/" + "\n" + ta_mensaje.getText());
+            tf_titulo.setText("");
+            ta_mensaje.setText("");
+        }
+
     }//GEN-LAST:event_ENVIARMouseClicked
 
     private void VERMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VERMouseClicked
+        String r = JOptionPane.showInputDialog(this,"Desea encriptar?[S/N]");
+        if(r.equals("S")){
         DefaultTableModel tt = (DefaultTableModel) mensajes.getModel();
-        tf_titulo.setText(((String)(tt.getValueAt(mensajes.getSelectedRow(), 0))).substring(0,((String)(tt.getValueAt(mensajes.getSelectedRow(), 0))).indexOf("/")));
-        ta_mensaje.setText(((String)(tt.getValueAt(mensajes.getSelectedRow(), 0))).substring(((String)(tt.getValueAt(mensajes.getSelectedRow(), 0))).indexOf("/")+1,((String)(tt.getValueAt(mensajes.getSelectedRow(), 0))).length()));
-        
+        String mensaje = "", mensajeCODIF;
+        tf_titulo.setText(((String) (tt.getValueAt(mensajes.getSelectedRow(), 0))).substring(0, ((String) (tt.getValueAt(mensajes.getSelectedRow(), 0))).indexOf("/")));
+        mensaje = ((String) (tt.getValueAt(mensajes.getSelectedRow(), 0))).substring(((String) (tt.getValueAt(mensajes.getSelectedRow(), 0))).indexOf("/") + 1, ((String) (tt.getValueAt(mensajes.getSelectedRow(), 0))).length());
+        int valor =Integer.parseInt(JOptionPane.showInputDialog(this, "Ingrese numero de codificacion"));
+        mensajeCODIF = cifradoCesar(mensaje, valor);
+        ta_mensaje.setText(mensaje + "\n" + "mensaje Codificado" + "\n" + mensajeCODIF+"\n" + "Descodificado a la inversa\n"+DEScifradoCesar(mensajeCODIF,valor));}
+        else{
+            DefaultTableModel tt = (DefaultTableModel) mensajes.getModel();
+            String mensaje = "", mensajeCODIF;
+            tf_titulo.setText(((String) (tt.getValueAt(mensajes.getSelectedRow(), 0))).substring(0, ((String) (tt.getValueAt(mensajes.getSelectedRow(), 0))).indexOf("/")));
+            mensaje = ((String) (tt.getValueAt(mensajes.getSelectedRow(), 0))).substring(((String) (tt.getValueAt(mensajes.getSelectedRow(), 0))).indexOf("/") + 1, ((String) (tt.getValueAt(mensajes.getSelectedRow(), 0))).length());
+            ta_mensaje.setText(mensaje);
+        }
     }//GEN-LAST:event_VERMouseClicked
-   
+
+    private void INTERFAZAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_INTERFAZAncestorAdded
+
+    }//GEN-LAST:event_INTERFAZAncestorAdded
+
     public static void main(String args[]) {
-        
+
         String usuarioKIM = "KIM";
         String contraKIM = "1234";
-        String contra="";
+        String contra = "";
         Boolean x = false;
-        do {            
-            String usuario = JOptionPane.showInputDialog(null,"Ingrese su nombre");
-            if(usuario.equals(usuarioKIM)){
-                contra = JOptionPane.showInputDialog(null,"Ingrese contra");
+        do {
+            String usuario = JOptionPane.showInputDialog(null, "Ingrese su nombre");
+            if (usuario.equals(usuarioKIM)) {
+                contra = JOptionPane.showInputDialog(null, "Ingrese contra");
                 serKIM = true;
-            }else{
+            } else {
                 serKIM = false;
+                break;
             }
         } while (!contra.equals(contraKIM));
-        
-
+        senuelo = true;
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
@@ -1651,7 +1726,27 @@ public class Principal extends javax.swing.JFrame {
         return codificado;
     }
 
+    public String DEScifradoCesar(String aCodificar, int codigo) {
+
+        String codificado = "";
+        aCodificar = aCodificar.toUpperCase();
+        int clave = codigo * (-1);
+        char letra;
+        for (int i = 0; i < aCodificar.length(); i++) {
+            int codigoChar = aCodificar.charAt(i);
+            //65-90
+            if (codigoChar - clave < 65) {
+                letra = (char) (codigoChar + clave + 90 - 64);
+            } else {
+                letra = (char) (codigoChar + clave);
+            }
+            codificado += letra;
+        }
+        return codificado;
+    }
+
     public String cifradoTTSimple(String aCodificar, String codigo) {
+
         String codificado = "";
         codigo = codigo.toUpperCase();
         codigo = ordenarPalabra(codigo);
@@ -1849,9 +1944,9 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTextField tf_vida;
     private javax.swing.JTextField tf_vida1;
     // End of variables declaration//GEN-END:variables
-    
+
     private Familiar actualFF;
     private Personal actualPP;
-    private static boolean serKIM;
+    private static boolean serKIM, senuelo;
     private ArrayList<Persona> listPersonas = new ArrayList();
 }

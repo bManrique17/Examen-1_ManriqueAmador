@@ -1832,6 +1832,9 @@
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="INTERFAZ">
+          <Events>
+            <EventHandler event="ancestorAdded" listener="javax.swing.event.AncestorListener" parameters="javax.swing.event.AncestorEvent" handler="INTERFAZAncestorAdded"/>
+          </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
               <JTabbedPaneConstraints tabName="InterfazUsuario">
@@ -2031,7 +2034,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="NOMBRE">
               <Properties>
-                <Property name="text" type="java.lang.String" value="jLabel49"/>
+                <Property name="text" type="java.lang.String" value="KIM"/>
               </Properties>
             </Component>
           </SubComponents>
